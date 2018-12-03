@@ -1,30 +1,40 @@
-gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
+gl.setup(400, 400)
 
-local json = require "json"
-local clients = {}
+function readln()
+    return coroutine.yield()
+end
 
--- If a new TCP client connects, see if it tries to connect to the
--- "proof-of-play" path and if so, same a reference to it in the 
--- clients table.
-node.event("connect", function(client, path)
-    if path == "proof-of-play" then
-        clients[client] = true
-    end
+if not N.clients then
+    N.clients = {}
+end
+
+node.event("connect", function(client)
+    local handler = coroutine.wrap(echo)
+    N.clients[client] = handler
+    handler(function(...)
+        sys.client_write(client, ...)
+    end)
 end)
 
--- Client disconnected? Then remove our reference
+node.event("input", function(line, client)
+    N.clients[client](line)
+end)
+
 node.event("disconnect", function(client)
-   clients[client] = nil
+    N.clients[client] = nil
 end)
 
--- This is the function used above which sends events to a locally
--- running progam on your Pi.
-local function save_proof_of_play(event)
-    -- encode event to JSON
-    local data = json.encode(event)
-    
-    -- send it to all connected clients
-    for client, _ in pairs(clients) do
-        node.client_write(client, data)
+function echo(print)
+    print("I will repeat everything you send me")
+    while true do
+        local line = readln()
+        print(line)
     end
+end
+
+util.auto_loader(_G)
+
+function node.render()
+    gl.clear(1,1,1,1)
+    util.draw_correct(blue_macaw, 0, 0, WIDTH, HEIGHT)
 end
