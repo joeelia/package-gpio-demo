@@ -1,7 +1,12 @@
 gl.setup(10, 56)
 
 local json = require "json"
-local clients = {}
+local clients = { 
+    asset_id = "55555", -- What are we playing
+    duration = "15", -- .. for how long
+    start = os.time(), -- unix timestamp of when playback started
+    device = sys.getenv "SERIAL" -- the serial number of the device
+}
 
 -- If a new TCP client connects, see if it tries to connect to the
 -- "proof-of-play" path and if so, same a reference to it in the 
