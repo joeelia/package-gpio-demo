@@ -1,7 +1,7 @@
 {
     "name": "Proof Of Play Demo",
     "permissions": {
-        "gpio": "Access GPIO"
+        "gpio": "Access GPIO",
         "network": "Access network"
     },
     "options": [{
