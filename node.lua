@@ -1,19 +1,30 @@
 gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 
-util.no_globals()
+local json = require "json"
+local clients = {}
 
-local on = false
+-- If a new TCP client connects, see if it tries to connect to the
+-- "proof-of-play" path and if so, same a reference to it in the 
+-- clients table.
+node.event("connect", function(client, path)
+    if path == "proof-of-play" then
+        clients[client] = true
+    end
+end)
 
-util.data_mapper{
-    state = function(state)
-        on = state == '1'
-    end,
-}
+-- Client disconnected? Then remove our reference
+node.event("disconnect", function(client)
+   clients[client] = nil
+end)
 
-function node.render()
-    if on then
-        gl.clear(0, 1, 0, 1) -- green
-    else
-        gl.clear(1, 0, 0, 1) -- red
+-- This is the function used above which sends events to a locally
+-- running progam on your Pi.
+local function save_proof_of_play(event)
+    -- encode event to JSON
+    local data = json.encode(event)
+    
+    -- send it to all connected clients
+    for client, _ in pairs(clients) do
+        node.client_write(client, data)
     end
 end
