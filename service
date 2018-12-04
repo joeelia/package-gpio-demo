@@ -4,6 +4,11 @@ import time
 from hosted import device, node, config
 config.restart_on_update()
 
+counter = 0
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
-    r = requests.get(config.url + str(state))
+    if state == true:
+        counter += 1
+        r = requests.get(config.url + "true " + str(counter))
+    else:
+        r = requests.get(config.url + "false")
