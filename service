@@ -4,11 +4,10 @@ import time
 from hosted import device, node, config, time
 config.restart_on_update()
 
-
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
     try:
-        r = requests.get("https://api.telegram.org/bot545310390:AAHWO6DJCvimklYkFJKxYRbhwJwnE2HLubg/sendMessage?chat_id=-1001336256280&text=hey4")
+        
     except:
         print "Couldn't connect to the API, check your Internet connection"
     counter = 0
@@ -24,6 +23,6 @@ for (pin, state) in device.gpio.poll_forever():
             counter += 1
         if counter == 10:
             print peoplecount
-            r({'value': peoplecount})
+            r = requests.get("https://api.telegram.org/bot545310390:AAHWO6DJCvimklYkFJKxYRbhwJwnE2HLubg/sendMessage?chat_id=-1001336256280&text="+str(peoplecount))
             counter = 0
             peoplecount = 0
