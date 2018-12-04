@@ -1,3 +1,29 @@
 #!/usr/bin/python2.7
 import requests
-r = requests.get("")
+import time
+from hosted import device, node, config, time
+config.restart_on_update()
+
+
+device.gpio.monitor(config.pin)
+for (pin, state) in device.gpio.poll_forever():
+    try:
+        r = requests.get("https://api.telegram.org/bot545310390:AAHWO6DJCvimklYkFJKxYRbhwJwnE2HLubg/sendMessage?chat_id=-1001336256280&text=hey4")
+    except:
+        print "Couldn't connect to the API, check your Internet connection"
+    counter = 0
+    people = 0
+    ecount = 0
+    while 1:
+        presence = GPIO.input(config.pin)
+        if presence:
+            peoplecount += 1
+            presence = 0
+            time.sleep(1.5)
+            time.sleep(1)
+            counter += 1
+        if counter == 10:
+            print peoplecount
+            people.save_value({'value': peoplecount})
+            counter = 0
+            peoplecount = 0
