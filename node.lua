@@ -1,9 +1,10 @@
 gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 
 local font = resource.load_font "font.ttf"
+local counter = 33
 
 util.data_mapper{
-    local counter = function(counter)
+    counter = function(counter)
     end,
 }
 
