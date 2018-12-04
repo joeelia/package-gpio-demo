@@ -4,11 +4,11 @@ util.no_globals()
 
 local font = resource.load_font "font.ttf"
 local on = false
-local counter = 0
+local counter = "hello"
 
 util.data_mapper{
     state = function(state)
-        counter = counter
+        counter = "hi"
     end,
 }
 
