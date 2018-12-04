@@ -3,7 +3,7 @@
 #r = requests.get(config.url + "true " + str(counter))
 import requests
 import time
-import date
+from datetime import datetime
 from hosted import device, node, config
 
 counter = 0
