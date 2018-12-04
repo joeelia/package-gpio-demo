@@ -4,7 +4,6 @@ import time
 from hosted import device, node, config, time, GPIO
 config.restart_on_update()
 
-GPIO.setmode(GPIO.BCM)
 GPIO.setup(config.pin, GPIO.IN)
 
 device.gpio.monitor(config.pin)
