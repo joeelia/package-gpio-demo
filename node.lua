@@ -2,6 +2,7 @@ gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 
 util.no_globals()
 
+local font = resource.load_font "font.ttf"
 local on = false
 
 util.data_mapper{
