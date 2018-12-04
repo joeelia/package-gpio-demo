@@ -3,7 +3,6 @@
 #r = requests.get(config.url + "true " + str(counter))
 import requests
 import time
-import calendar
 from hosted import device, node, config
 
 counter = 0
@@ -20,7 +19,7 @@ for (pin, state) in device.gpio.poll_forever():
         data = {
             "device_id": config.metadata['device_id'],
             "motion": counter,
-            "timestamp": calendar.timegm(time.gmtime())
+            "timestamp": current_time.strftime('%m/%d/%Y')
         }
         req = requests.post(url, json=data, headers=headers)
         r = requests.get(config.url + str(req) + str(counter))
