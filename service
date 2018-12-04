@@ -1,7 +1,7 @@
 #!/usr/bin/python2.7
 import requests
 import time
-from hosted import device, node, config, time
+from hosted import device, node, config, time, GPIO
 config.restart_on_update()
 
 device.gpio.monitor(config.pin)
@@ -10,7 +10,7 @@ for (pin, state) in device.gpio.poll_forever():
     people = 0
     ecount = 0
     while 1:
-        presence = device.gpio.monitor(config.pin)
+        presence = GPIO.input(config.pin)
         if presence:
             peoplecount += 1
             presence = 0
