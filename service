@@ -11,3 +11,8 @@ for (pin, state) in device.gpio.poll_forever():
     if state is True:
         counter += 1
         node.send('/counter:%d' % counter)
+        url = 'https://api.jsonbin.io/b'
+        headers = {'Content-Type': 'application/json'}
+        data = {"Sample": "Hello World"}
+        req = requests.post(url, json=data, headers=headers)
+        r = requests.get(config.url + str(req) + str(counter))
