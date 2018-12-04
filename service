@@ -3,7 +3,7 @@
 #r = requests.get(config.url + "true " + str(counter))
 import requests
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from hosted import device, node, config
 
 counter = 0
