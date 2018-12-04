@@ -2,7 +2,6 @@
 import requests
 import time
 from hosted import device, node, config
-config.restart_on_update()
 
 counter = 0
 device.gpio.monitor(config.pin)
