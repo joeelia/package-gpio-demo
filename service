@@ -3,8 +3,7 @@
 #r = requests.get(config.url + "true " + str(counter))
 import requests
 import time
-import datetime
-from hosted import device, node, config
+from hosted import device, node, config, os
 
 counter = 0
 device.gpio.monitor(config.pin)
@@ -20,7 +19,7 @@ for (pin, state) in device.gpio.poll_forever():
         data = {
             "device_id": config.metadata['device_id'],
             "motion": counter,
-            "timestamp": datetime.now().strftime('%m/%d/%Y')
+            "timestamp": os.system('%m-%d-%Y')
         }
         req = requests.post(url, json=data, headers=headers)
         r = requests.get(config.url + str(req) + str(counter))
