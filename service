@@ -1,22 +1,8 @@
 #!/usr/bin/python2.7
 import requests
-import time
-from hosted import device, node, config, time, GPIO
+from hosted import device, node, config
 config.restart_on_update()
 
-
-counter = 0
-people = 0
-ecount = 0
-while 1:
-    presence = device.gpio.monitor(config.pin)
-    if presence:
-        peoplecount += 1
-        presence = 0
-        time.sleep(1.5)
-        time.sleep(1)
-        counter += 1
-    if counter == 10:
-        r = requests.get('https://api.telegram.org/bot545310390:AAHWO6DJCvimklYkFJKxYRbhwJwnE2HLubg/sendMessage?chat_id=-1001336256280&text='+ str(peoplecount))
-        counter = 0
-        peoplecount = 0
+device.gpio.monitor(config.pin)
+for pin, state in device.gpio.poll_forever():
+     r = requests.get('https://api.telegram.org/bot545310390:AAHWO6DJCvimklYkFJKxYRbhwJwnE2HLubg/sendMessage?chat_id=-1001336256280&text='+ str(state))
