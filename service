@@ -6,7 +6,7 @@ config.restart_on_update()
 
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
-    serial = sys.getenv "SERIAL"
+    serial = sys.getenv
     counter = 0
     while state == True:
         counter += 1
