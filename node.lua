@@ -3,12 +3,10 @@ gl.setup(NATIVE_WIDTH, NATIVE_HEIGHT)
 util.no_globals()
 
 local font = resource.load_font "font.ttf"
-local on = false
-local counter = "hello"
+local counter
 
 util.data_mapper{
-    state = function(state)
-        counter = "hi"
+    counter = function(counter)
     end,
 }
 
