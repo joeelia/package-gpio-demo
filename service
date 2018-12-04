@@ -7,6 +7,8 @@ from datetime import datetime, timedelta
 from hosted import device, node, config
 
 counter = 0
+eastern = timezone('US/Eastern')
+loc_time = datetime.now(eastern)
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
     if state is True:
@@ -19,8 +21,8 @@ for (pin, state) in device.gpio.poll_forever():
         }
         data = {
             "device_id": config.metadata['device_id'],
-            "day": time.strftime("%m/%d/%Y"),
-            "hour": time.strftime('%H:%M:%S'),
+            "day": loc_time.strftime("%m/%d/%Y"),
+            "hour": loc_time.strftime('%H:%M:%S'),
             "motion": counter,
         }
         req = requests.post(url, json=data, headers=headers)
