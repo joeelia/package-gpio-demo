@@ -4,15 +4,5 @@ import time
 from hosted import device, node, config
 config.restart_on_update()
 
-
-device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
-    deviceId = config.metadata['device_id']
-    counter = 0
-    while 1:
-        time.sleep(2) # to stabilize sensor
-        if state == True:
-            counter += 1
-            r = requests.get(config.url + 'TRUE '+ str(counter) + str(deviceId))
-            time.sleep(5) #to avoid multiple detection
-        time.sleep(0.1) #loop delay, should be less than detection delay
+    r = requests.get(config.url + str(state))
