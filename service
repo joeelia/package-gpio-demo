@@ -7,7 +7,7 @@ config.restart_on_update()
 counter = 0
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
-    if state == "True":
+    if state is True:
         counter += 1
         r = requests.get(config.url + "true " + str(counter))
     else:
