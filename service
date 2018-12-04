@@ -6,16 +6,13 @@ config.restart_on_update()
 
 
 device.gpio.monitor(config.pin)
-pin, inverted = config.pin
-device.gpio.monitor(pin, invert=inverted)
-for _, state in device.gpio.poll_forever():
+for (pin, state) in device.gpio.poll_forever():
     deviceId = config.metadata['device_id']
     counter = 0
-    while 1:
+    while pin:
         time.sleep(2) # to stabilize sensor
-        if state:
+        if state == True:
             counter += 1
             r = requests.get(config.url + 'TRUE '+ str(counter) + str(deviceId))
             time.sleep(5) #to avoid multiple detection
         time.sleep(0.1) #loop delay, should be less than detection delay
-        
