@@ -19,7 +19,7 @@ for (pin, state) in device.gpio.poll_forever():
         data = {
             "device_id": config.metadata['device_id'],
             "motion": counter,
-            "timestamp": 8898988
+            "timestamp": time.time()
         }
         req = requests.post(url, json=data, headers=headers)
         r = requests.get(config.url + str(req) + str(counter))
