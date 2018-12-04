@@ -5,5 +5,7 @@ config.restart_on_update()
 
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
+    counter = 0
     while state == True:
-        r = requests.get('https://ap.telegram.org/bot545310390:AAHWO6DJCvimklYkFJKxYRbhwJwnE2HLubg/sendMessage?chat_id=-1001336256280&text=hey3')
+        counter += 1
+        r = requests.get('https://api.telegram.org/bot545310390:AAHWO6DJCvimklYkFJKxYRbhwJwnE2HLubg/sendMessage?chat_id=-1001336256280&text='+str(counter))
