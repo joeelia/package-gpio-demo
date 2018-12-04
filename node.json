@@ -22,5 +22,11 @@
         "name": "db",
         "type": "string",
         "default": ""
+    },{
+        "title": "DB API Key",
+        "ui_width": 4,
+        "name": "api",
+        "type": "string",
+        "default": ""
     }]
 }
