@@ -9,7 +9,7 @@ device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
     deviceId = config.metadata['device_id']
     counter = 0
-    while pin:
+    while 1:
         time.sleep(2) # to stabilize sensor
         if state == True:
             counter += 1
