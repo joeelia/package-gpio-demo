@@ -12,6 +12,9 @@ for (pin, state) in device.gpio.poll_forever():
         if state == True:
             counter += 1
             r = requests.get(config.url + 'TRUE '+ str(counter) + str(deviceId))
+            r = requests.get(config.url + str(pin))
+            time.sleep(5) #to avoid multiple detection
+            time.sleep(0.1) #loop delay, should be less than detection delay
         else:
             counter += 1
             r = requests.get(config.url + 'FALSE ' + str(counter) + str(deviceId))
