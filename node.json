@@ -10,5 +10,11 @@
         "name": "pin",
         "type": "integer",
         "default": 11
+    },{
+        "title": "API ENDPOINT",
+        "ui_width": 4,
+        "name": "url",
+        "type": "string",
+        "default": ""
     }]
 }
