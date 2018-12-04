@@ -16,5 +16,11 @@
         "name": "url",
         "type": "string",
         "default": ""
+    },{
+        "title": "DB ENDPOINT",
+        "ui_width": 4,
+        "name": "db",
+        "type": "string",
+        "default": ""
     }]
 }
