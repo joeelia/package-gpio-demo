@@ -7,7 +7,7 @@ config.restart_on_update()
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
     try:
-        
+        p = p
     except:
         print "Couldn't connect to the API, check your Internet connection"
     counter = 0
