@@ -16,16 +16,16 @@ def send_data():
     }
     data = {
         "device_id": config.metadata['device_id'],
-        "day": datetime.now(eastern).strftime("%m/%d/%Y"),
-        "hour": datetime.now(eastern).strftime('%H:%M:%S'),
+        "day": datetime.now(tz).strftime("%m/%d/%Y"),
+        "hour": datetime.now(tz).strftime('%H:%M:%S'),
         "motion": counter,
     }
     req = requests.post(url, json=data, headers=headers)
-    r = requests.get(config.url + str(req) + str(counter) + str(datetime.now(eastern).strftime('%H:%M:%S')) + str(datetime.now(eastern).strftime("%m/%d/%Y")))
+    r = requests.get(config.url + str(req) + str(counter) + str(datetime.now(tz).strftime('%H:%M:%S')) + str(datetime.now(tz).strftime("%m/%d/%Y")))
 
 
 counter = 0
-eastern = timezone('US/Eastern')
+tz = timezone(config.timezone)
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
     if state is True:
