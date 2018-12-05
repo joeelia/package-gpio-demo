@@ -9,10 +9,10 @@ from hosted import device, node, config
 
 counter = 0
 eastern = timezone('US/Eastern')
-loc_time = datetime.now(eastern)
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
-    if state is True:
+    while 1:
+        loc_time = datetime.now(eastern)
         counter += 1
         node.send('/counter:%d' % counter)
         url = config.db
