@@ -5,7 +5,7 @@ local count
 
 util.data_mapper{
     counter = function(counter)
-        count = counter
+        count = tostring(counter)
     end,
 }
 
