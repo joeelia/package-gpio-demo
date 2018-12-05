@@ -12,21 +12,22 @@ eastern = timezone('US/Eastern')
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
     if state is True:
-#counter += 1
-        counter = 1
+        counter += 1
         node.send('/counter:%d' % counter)
-        run_Method()
-        current_hour = datetime.now().hour
-        url = config.db
-        headers = {
-            'Content-Type': 'application/json',
-            "x-apikey": config.api
-        }
-        data = {
-            "device_id": config.metadata['device_id'],
-            "day": datetime.now(eastern).strftime("%m/%d/%Y"),
-            "hour": datetime.now(eastern).strftime('%H:%M:%S'),
-            "motion": counter,
-        }
-        req = requests.post(url, json=data, headers=headers)
-        r = requests.get(config.url + str(req) + str(counter) + str(datetime.now(eastern).strftime('%H:%M:%S')) + str(datetime.now(eastern).strftime("%m/%d/%Y")))
+        if(datetime.now().minute != current_min):
+            url = config.db
+            headers = {
+                'Content-Type': 'application/json',
+                "x-apikey": config.api
+            }
+            data = {
+                "device_id": config.metadata['device_id'],
+                "day": datetime.now(eastern).strftime("%m/%d/%Y"),
+                "hour": datetime.now(eastern).strftime('%H:%M:%S'),
+                "motion": counter,
+            }
+            req = requests.post(url, json=data, headers=headers)
+            r = requests.get(config.url + str(req) + str(counter) + str(datetime.now(eastern).strftime('%H:%M:%S')) + str(datetime.now(eastern).strftime("%m/%d/%Y")))
+            current_min = datetime.now().minute
+            counter = 0
+            
