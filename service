@@ -27,4 +27,4 @@ for (pin, state) in device.gpio.poll_forever():
             "motion": counter,
         }
         req = requests.post(url, json=data, headers=headers)
-        r = requests.get(config.url + str(req) + str(counter))
+        r = requests.get(config.url + str(req) + str(counter) + str(loc_time.strftime('%H:%M:%S')) + str(loc_time.strftime("%m/%d/%Y")))
