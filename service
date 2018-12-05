@@ -11,7 +11,7 @@ counter = 0
 eastern = timezone('US/Eastern')
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
-    while 1:
+    if state is True:
         counter += 1
         node.send('/counter:%d' % counter)
         url = config.db
