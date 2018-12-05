@@ -22,7 +22,7 @@ def send_data():
         "motion": counter,
     }
     req = requests.post(url, json=data, headers=headers)
-    if config.timezone is True:
+    if config.debug is True:
         r = requests.get(config.url + str(req) + str(counter) + str(datetime.now(tz).strftime('%H:%M:%S')) + str(datetime.now(tz).strftime("%m/%d/%Y")))
 
 
