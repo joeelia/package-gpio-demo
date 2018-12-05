@@ -11,11 +11,19 @@
         "type": "integer",
         "default": 11
     },{
-        "title": "API ENDPOINT",
-        "ui_width": 10,
+        "title": "Debug API ENDPOINT",
+        "ui_width": 8,
         "name": "url",
         "type": "string",
         "default": ""
+    },{
+        "title": "Use Debug Mode?",
+        "ui_width": 2,
+        "name": "debug",
+        "type": "boolean",
+        "hint": "Sends get request with paramaters to this endpoint",
+        "doc_link": true,
+        "default": false
     },{
         "title": "DB ENDPOINT",
         "ui_width": 6,
