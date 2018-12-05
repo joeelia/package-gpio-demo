@@ -6,25 +6,25 @@
     },
     "options": [{
         "title": "PIN",
-        "ui_width": 3,
+        "ui_width": 2,
         "name": "pin",
         "type": "integer",
         "default": 11
     },{
         "title": "API ENDPOINT",
-        "ui_width": 9,
+        "ui_width": 10,
         "name": "url",
         "type": "string",
         "default": ""
     },{
         "title": "DB ENDPOINT",
-        "ui_width": 4,
+        "ui_width": 6,
         "name": "db",
         "type": "string",
         "default": ""
     },{
         "title": "DB API Key",
-        "ui_width": 4,
+        "ui_width": 6,
         "name": "api",
         "type": "string",
         "default": ""
