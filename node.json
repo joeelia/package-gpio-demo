@@ -6,13 +6,13 @@
     },
     "options": [{
         "title": "PIN",
-        "ui_width": 1,
+        "ui_width": 3,
         "name": "pin",
         "type": "integer",
         "default": 11
     },{
         "title": "API ENDPOINT",
-        "ui_width": 7,
+        "ui_width": 9,
         "name": "url",
         "type": "string",
         "default": ""
