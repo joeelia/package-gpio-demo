@@ -22,7 +22,8 @@ def send_data():
         "motion": counter,
     }
     req = requests.post(url, json=data, headers=headers)
-    r = requests.get(config.url + str(req) + str(counter) + str(datetime.now(tz).strftime('%H:%M:%S')) + str(datetime.now(tz).strftime("%m/%d/%Y")))
+    if config.timezone is True:
+        r = requests.get(config.url + str(req) + str(counter) + str(datetime.now(tz).strftime('%H:%M:%S')) + str(datetime.now(tz).strftime("%m/%d/%Y")))
 
 
 counter = 0
