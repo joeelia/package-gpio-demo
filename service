@@ -7,19 +7,7 @@ from pytz import timezone
 from datetime import datetime, timedelta
 from hosted import device, node, config
 
-counter = 0
-eastern = timezone('US/Eastern')
-device.gpio.monitor(config.pin)
-for (pin, state) in device.gpio.poll_forever():
-    if state is True:
-        counter += 1
-        node.send('/counter:%d' % counter)
-        send_data()
 
-        
-        
-        
-        
 def send_data():
     url = config.db
     headers = {
@@ -34,3 +22,13 @@ def send_data():
     }
     req = requests.post(url, json=data, headers=headers)
     r = requests.get(config.url + str(req) + str(counter) + str(datetime.now(eastern).strftime('%H:%M:%S')) + str(datetime.now(eastern).strftime("%m/%d/%Y")))
+
+
+counter = 0
+eastern = timezone('US/Eastern')
+device.gpio.monitor(config.pin)
+for (pin, state) in device.gpio.poll_forever():
+    if state is True:
+        counter += 1
+        node.send('/counter:%d' % counter)
+        send_data()
