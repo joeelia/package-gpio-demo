@@ -6,13 +6,13 @@
     },
     "options": [{
         "title": "PIN",
-        "ui_width": 4,
+        "ui_width": 1,
         "name": "pin",
         "type": "integer",
         "default": 11
     },{
         "title": "API ENDPOINT",
-        "ui_width": 4,
+        "ui_width": 7,
         "name": "url",
         "type": "string",
         "default": ""
@@ -28,5 +28,16 @@
         "name": "api",
         "type": "string",
         "default": ""
+    },{
+    "title": "Time Zone",
+    "ui_width": 4,
+    "ui_spacing": 4,
+    "name": "timezone",
+    "type": "select",
+    "hint": "The timezone",
+    "options": [
+        ["US/Eastern", "US/Central"]
+    ],
+    "default": "US/Eastern"
     }]
 }
