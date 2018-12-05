@@ -31,7 +31,8 @@ tz = timezone(config.timezone)
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
     if state is True:
-        counter = 1
+        count = 1
+        counter += 1
         node.send('/counter:%d' % counter)
         send_data()
         time.sleep(10)
