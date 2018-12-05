@@ -12,7 +12,6 @@ eastern = timezone('US/Eastern')
 device.gpio.monitor(config.pin)
 for (pin, state) in device.gpio.poll_forever():
     while 1:
-        loc_time = datetime.now(eastern)
         counter += 1
         node.send('/counter:%d' % counter)
         url = config.db
@@ -22,9 +21,9 @@ for (pin, state) in device.gpio.poll_forever():
         }
         data = {
             "device_id": config.metadata['device_id'],
-            "day": loc_time.strftime("%m/%d/%Y"),
-            "hour": loc_time.strftime('%H:%M:%S'),
+            "day": datetime.now(eastern).strftime("%m/%d/%Y"),
+            "hour": datetime.now(eastern).strftime('%H:%M:%S'),
             "motion": counter,
         }
         req = requests.post(url, json=data, headers=headers)
-        r = requests.get(config.url + str(req) + str(counter) + str(loc_time.strftime('%H:%M:%S')) + str(loc_time.strftime("%m/%d/%Y")))
+        r = requests.get(config.url + str(req) + str(counter) + str(datetime.now(eastern).strftime('%H:%M:%S')) + str(datetime.now(eastern).strftime("%m/%d/%Y")))
