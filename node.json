@@ -36,7 +36,8 @@
     "type": "select",
     "hint": "The timezone",
     "options": [
-        ["US/Eastern", "US/Central"]
+        ["EST", "US/Eastern"],
+        ["CST", "US/Central"]
     ],
     "default": "US/Eastern"
     }]
