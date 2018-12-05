@@ -35,4 +35,4 @@ for (pin, state) in device.gpio.poll_forever():
         counter += 1
         node.send('/counter:%d' % counter)
         send_data()
-        time.sleep(2)
+        time.sleep(3)
