@@ -14,6 +14,7 @@ for (pin, state) in device.gpio.poll_forever():
     if state is True:
         counter += 1
         node.send('/counter:%d' % counter)
+        current_min = datetime.now().minute
         if(datetime.now().minute != current_min):
             url = config.db
             headers = {
