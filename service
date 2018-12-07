@@ -17,9 +17,7 @@ def send_data():
     }
     data = {
         "device_id": config.metadata['device_id'],
-        "day": datetime.now(tz).strftime("%m/%d/%Y"),
-        "hour": datetime.now(tz).strftime('%H:%M:%S'),
-        "motion": counter,
+        "created_at": datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S')
     }
     req = requests.post(url, json=data, headers=headers)
     if config.debug is True:
